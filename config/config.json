@@ -5,7 +5,8 @@
     "database": "aziyewem",
     "host": "elmer.db.elephantsql.com",
     "dialect": "postgres",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "migrationStorageTableSchema": "stock"
   },
   "test": {
     "username": "root",

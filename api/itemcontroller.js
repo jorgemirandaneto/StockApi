@@ -1,6 +1,8 @@
-const express = require('express')
-const app = express();
+const db = require('../config/database');
+const item = db.item;
 
-app.get('/users', (req, res) => {
-    return res.send('GET HTTP method on user resource');
-  });
+exports.findAll = (req, res) => {
+	item.findAll().then(itens => {	  
+	  res.send(itens);
+	});
+};

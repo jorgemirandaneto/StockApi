@@ -14,3 +14,13 @@ sequelize
     .catch(err => {
         console.error('Erro ao conectar ao postgres:', err);
     });
+
+
+const db = {};
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+db.item = require('../Model/item');
+
+module.exports = db;

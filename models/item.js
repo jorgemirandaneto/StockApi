@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    amount : {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {sequelize, modelName: 'item',tableName:'Item' ,schema: 'stock'});
   Item.associate = function(models) {

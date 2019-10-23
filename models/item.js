@@ -11,13 +11,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    amount : {
+    mesuareId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    amount: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
-  }, {sequelize, modelName: 'item',tableName:'Item' ,schema: 'stock'});
-  Item.associate = function(models) {
-    // associations can be defined here
+  }, { sequelize, modelName: 'item', tableName: 'Item', schema: 'stock' });
+  Item.associate = function (models) {
+    Item.belongsTo(models.mesuare, { foreignKey: 'mesuareId', as: 'Mesuare' })
   };
   return Item;
 };

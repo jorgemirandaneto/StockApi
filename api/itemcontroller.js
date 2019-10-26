@@ -4,7 +4,8 @@ const item = db.item;
 exports.create = (req, res) => {
 	item.create({
 		name: req.body.name,
-		aumount: req.body.aumount
+		amount: req.body.amount,
+		mesuareId: req.body.mesuareId
 	}).then(item =>
 		res.send(item)
 	)
@@ -17,16 +18,21 @@ exports.findAll = (req, res) => {
 };
 
 exports.findById = (req, res) => {
-	item.findById(req.params.id).then(item => {
+	item.findAll({
+		where: {
+			id: req.params.id
+		}
+	}).then(item => {
 		res.send(item);
 	})
 };
 
 exports.update = (req, res) => {
-	const id = req.body.id;
+	const id = req.params.id;
 	item.update({
 		name: req.body.name,
-		aumount: req.body.aumount
+		aumount: req.body.aumount,
+		mesuareId: req.body.mesuareId
 	},
 		{ where: { id: id } }
 
@@ -36,10 +42,13 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-	const id = req.body.id;
-	item.destroy({},
-		{ where: { id: id } }
+	const id = req.params.id;
+	item.destroy(
+		{ where: { id: id },
+		truncate: true 
+	},		
 	).then(() => {
 		res.status(200).send(`Delete item id:${id}`)
 	})
-}
+};
+

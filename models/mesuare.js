@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     }
-  }, {sequelize, modelName: 'Mesuare',tableName:'Mesuare' ,schema: 'stock'});
+  }, {sequelize, modelName: 'mesuare',tableName:'Mesuare' ,schema: 'stock'});
   Mesuare.associate = function (models) {
-    // associations can be defined here
+   Mesuare.hasMany(models.Item, {foreignKey: 'mesuareId',targetKey: 'id'})
   };
   return Mesuare;
 };

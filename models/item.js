@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    mesuareId: {
+    mesuare_id: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, { sequelize, modelName: 'item', tableName: 'Item', schema: 'stock' });
   Item.associate = function (models) {
-    Item.belongsTo(models.mesuare, { foreignKey: 'mesuareId', as: 'Mesuare' })
+    Item.belongsTo(models.mesuare, { foreignKey: 'mesuareId', as: 'mesuare' })
   };
   return Item;
 };

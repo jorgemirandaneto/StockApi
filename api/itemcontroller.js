@@ -12,19 +12,38 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-	item.findAll().then(itens => {
-		res.send(itens);
-	});
+	item.findAll({
+		include: [{
+			model: db.mesuare
+		}]
+	}).then(item => item.map(({ id, name, amount, Mesuare }) => ({
+		id: id,
+		nome: name,
+		amount: amount,
+		mesuare: {
+			id: Mesuare.id,
+			name: Mesuare.description
+		}
+	}))).then(itens => res.send(itens))
 };
 
 exports.findById = (req, res) => {
-	item.findAll({
-		where: {
-			id: req.params.id
-		}
-	}).then(item => {
-		res.send(item);
-	})
+	item.findAll(
+		{
+			include: [{
+				model: db.mesuare
+			}]
+		},
+		{ where: { id: req.params.id } }
+		).then(item => item.map(({ id, name, amount, Mesuare }) => ({
+			id: id,
+			nome: name,
+			amount: amount,
+			mesuare: {
+				id_mesuare: Mesuare.id,
+				name: Mesuare.description
+			}
+		}))).then(itens => res.send(itens))
 };
 
 exports.update = (req, res) => {
@@ -44,9 +63,10 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
 	const id = req.params.id;
 	item.destroy(
-		{ where: { id: id },
-		truncate: true 
-	},		
+		{
+			where: { id: id },
+			truncate: false
+		},
 	).then(() => {
 		res.status(200).send(`Delete item id:${id}`)
 	})

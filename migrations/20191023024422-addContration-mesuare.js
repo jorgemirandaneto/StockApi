@@ -6,7 +6,7 @@ module.exports = {
       {
         tableName: 'Item',
         schema: 'stock',
-      }, 'mesuareId', {
+      }, 'mesuare_id', {
       type: Sequelize.INTEGER,
       references: {
         model: 'Mesuare',

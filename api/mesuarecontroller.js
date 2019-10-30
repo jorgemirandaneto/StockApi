@@ -24,3 +24,29 @@ exports.findById = (req, res) => {
     ).then(m => m.map(({ id, description }) => ({ id, name: description })))
     .then(mes => res.send(mes))
 };
+
+
+exports.update = (req, res) => {
+    const id = req.params.id;
+    const { id, description } = req.body
+    mesuare.update({
+        id,
+        description
+    },
+        {where : {id}}
+    ).then(() =>{
+        res.status(200).send(`Update mesuare id:${id}`)
+    })
+};
+
+exports.delete = (req, res) => {
+    const id = req.params.id;
+	mesuare.destroy(
+		{
+			where: { id },
+			truncate: false
+		},
+	).then(() => {
+		res.status(200).send(`Delete mesuare id:${id}`)
+	})
+};

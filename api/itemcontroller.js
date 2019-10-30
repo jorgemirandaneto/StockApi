@@ -2,10 +2,12 @@ const db = require('../config/database');
 const item = db.item;
 
 exports.create = (req, res) => {
+	const { id, name, amount, mesuare_id } = req.body
 	item.create({
-		name: req.body.name,
-		amount: req.body.amount,
-		mesuareId: req.body.mesuareId
+		id,
+		name,
+		amount,
+		mesuare_id
 	}).then(item =>
 		res.send(item)
 	)
@@ -28,32 +30,34 @@ exports.findAll = (req, res) => {
 };
 
 exports.findById = (req, res) => {
+	const id = req.params.id;
 	item.findAll(
 		{
+			where: { id },
 			include: [{
 				model: db.mesuare
 			}]
 		},
-		{ where: { id: req.params.id } }
-		).then(item => item.map(({ id, name, amount, Mesuare }) => ({
-			id: id,
-			nome: name,
-			amount: amount,
-			mesuare: {
-				id_mesuare: Mesuare.id,
-				name: Mesuare.description
-			}
-		}))).then(itens => res.send(itens))
+	).then(item => item.map(({ id, name, amount, Mesuare }) => ({
+		id: id,
+		nome: name,
+		amount: amount,
+		mesuare: {
+			id: Mesuare.id,
+			name: Mesuare.description
+		}
+	}))).then(itens => res.send(itens))
 };
 
 exports.update = (req, res) => {
 	const id = req.params.id;
+	const { name, amount, mesuare_id } = req.body
 	item.update({
-		name: req.body.name,
-		aumount: req.body.aumount,
-		mesuareId: req.body.mesuareId
+		name,
+		amount,
+		mesuare_id
 	},
-		{ where: { id: id } }
+		{ where: { id } }
 
 	).then(() => {
 		res.status(200).send(`Update item id:${id}`)
@@ -64,7 +68,7 @@ exports.delete = (req, res) => {
 	const id = req.params.id;
 	item.destroy(
 		{
-			where: { id: id },
+			where: { id },
 			truncate: false
 		},
 	).then(() => {

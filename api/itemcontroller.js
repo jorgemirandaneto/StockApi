@@ -40,7 +40,7 @@ exports.findById = (req, res) => {
 		},
 	).then(item => item.map(({ id, name, amount, Mesuare }) => ({
 		id: id,
-		nome: name,
+		name: name,
 		amount: amount,
 		mesuare: {
 			id: Mesuare.id,

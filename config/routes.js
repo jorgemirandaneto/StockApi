@@ -1,7 +1,8 @@
-module.exports = function(app){
-    
-    const item = require('../api/itemcontroller')
-        
+const item = require('../api/itemcontroller')
+const mesuare = require('../api/mesuarecontroller')
+
+module.exports = function (app) {
+
     app.get('/api/item', item.findAll);
 
     app.post('/api/item', item.create);
@@ -11,4 +12,10 @@ module.exports = function(app){
     app.put('/api/item/:id', item.update);
 
     app.delete('/api/item/:id', item.delete);
+
+    app.post('/api/mesuare', mesuare.create);
+
+    app.get('/api/mesuare', mesuare.findAll);
+
+    app.get('/api/mesuare/:id', mesuare.findById);
 }   

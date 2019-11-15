@@ -27,13 +27,13 @@ exports.findById = (req, res) => {
 
 
 exports.update = (req, res) => {
-    const id = req.params.id;
+    const idMesuare = req.params.id;
     const { id, description } = req.body
     mesuare.update({
         id,
         description
     },
-        {where : {id}}
+        {where : {idMesuare}}
     ).then(() =>{
         res.status(200).send(`Update mesuare id:${id}`)
     })

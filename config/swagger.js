@@ -1,35 +1,128 @@
 /**
  * @swagger
- * /loginUser:
+ * /api/item:
  *   post:
  *     tags:
- *       - Users
- *     name: Login
- *     summary: Logs in a user
- *     produces:
- *       - application/json
+ *       - Item
+ *     name: Item
+ *     summary: Criar novo Item
  *     consumes:
  *       - application/json
+ *     produces:
+ *       - application/json
  *     parameters:
- *       - name: body
+ *       - name: Item   
  *         in: body
  *         schema:
- *           $ref: '#/definitions/User'
  *           type: object
  *           properties:
- *             username:
+ *             name:
  *               type: string
- *             password:
- *               type: string
- *               format: password
+ *             mesuare_id:
+ *               type: integer
+ *             amount:
+ *               type: integer
  *         required:
- *           - username
- *           - password
+ *           - name
+ *           - mesuare_id
+ *           - amount
  *     responses:
  *       '200':
- *         description: User found and logged in successfully
- *       '401':
- *         description: Bad username, not found in db
- *       '403':
- *         description: Username and password don't match
+ *         description: Ok!
+ */
+/**
+ * @swagger
+ * /api/item:
+ *   get:
+ *     tags:
+ *       - Item
+ *     name: Find user
+ *     summary: Finds a user
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       '200':
+ *         description: Lista todos os itens
+ */
+
+/**
+ * @swagger
+ * /api/item/{id}:
+ *   get:
+ *     tags:
+ *       - Item
+ *     name: Selecionar item
+ *     summary: Seleciona item
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true 
+ *     responses:
+ *       '200':
+ *         description: Retorna o objeto selecionado.
+ */
+
+ /**
+ * @swagger
+ * /api/item/{id}:
+ *   delete:
+ *     tags:
+ *       - Item
+ *     name: Deleta Item
+ *     summary: Deleta Item
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required:
+ *           - id
+ *     responses:
+ *       '200':
+ *         description: Ok!
+ */
+
+/**
+ * @swagger
+ * /api/item/{id}:
+ *   put:
+ *     tags:
+ *       - Item
+ *     name: Atualiza item
+ *     summary: Atualiza item
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true     
+ *       - name: Item   
+ *         in: body
+ *         schema:
+ *           type: object
+ *           properties:
+ *             name:
+ *               type: string
+ *             mesuare_id:
+ *               type: integer
+ *             amount:
+ *               type: integer
+ *         required:
+ *           - name
+ *           - mesuare_id
+ *           - amount
+ *     responses:
+ *       '200':
+ *         description: Ok!
+ *
  */

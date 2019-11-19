@@ -7,7 +7,7 @@ exports.create = (req, res) => {
         id,
         description
     }).then(mesuare => {
-        res.send(mesuare)
+        res.send('Ok!')
     })
 };
 

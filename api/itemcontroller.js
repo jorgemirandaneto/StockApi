@@ -1,6 +1,7 @@
 const db = require('../config/database');
 const item = db.item;
 
+
 exports.create = (req, res) => {
 	const { id, name, amount, mesuare_id } = req.body
 	item.create({
@@ -9,7 +10,7 @@ exports.create = (req, res) => {
 		amount,
 		mesuare_id
 	}).then(item =>
-		res.send(item)
+		res.send('Ok!')
 	)
 }
 

@@ -36,8 +36,8 @@
  *   get:
  *     tags:
  *       - Item
- *     name: Find user
- *     summary: Finds a user
+ *     name: Lista todos os itens
+ *     summary: Lista todos os itens
  *     consumes:
  *       - application/json
  *     produces:
@@ -121,6 +121,126 @@
  *           - name
  *           - mesuare_id
  *           - amount
+ *     responses:
+ *       '200':
+ *         description: Ok!
+ *
+ */
+
+ /////mesuare
+
+ /**
+ * @swagger
+ * /api/mesuare:
+ *   post:
+ *     tags:
+ *       - Mesuare
+ *     name: Item
+ *     summary: Criar novo Mesuare
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: Mesuare   
+ *         in: body
+ *         schema:
+ *           type: object
+ *           properties:
+ *             description:
+ *               type: string
+ *         required:
+ *           - description
+ *     responses:
+ *       '200':
+ *         description: Ok!
+ */
+
+ /**
+ * @swagger
+ * /api/mesuare:
+ *   get:
+ *     tags:
+ *       - Mesuare
+ *     name: Lista todos os mesuares
+ *     summary: Lista todos os mesuares
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       '200':
+ *         description: Lista todos os itens
+ */
+
+/**
+* @swagger
+* /api/mesuare/{id}:
+*   get:
+*     tags:
+*       - Mesuare
+*     name: Selecionar mesuare
+*     summary: Seleciona mesuare
+*     consumes:
+*       - application/json
+*     produces:
+*       - application/json
+*     parameters:
+*       - in: path
+*         name: id
+*         required: true 
+*     responses:
+*       '200':
+*         description: Retorna o objeto selecionado.
+*/
+
+/**
+ * @swagger
+ * /api/mesuare/{id}:
+ *   delete:
+ *     tags:
+ *       - Mesuare
+ *     name: Deleta mesuare
+ *     summary: Deleta mesuare
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required:
+ *           - id
+ *     responses:
+ *       '200':
+ *         description: Ok!
+ */
+
+ /**
+ * @swagger
+ * /api/mesuare/{id}:
+ *   put:
+ *     tags:
+ *       - Mesuare
+ *     name: Atualiza mesuare
+ *     summary: Atualiza mesuare
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true     
+ *       - name: Mesuare   
+ *         in: body
+ *         schema:
+ *           type: object
+ *           properties:
+ *             description:
+ *               type: string           
+ *         required:
+ *           - description
  *     responses:
  *       '200':
  *         description: Ok!

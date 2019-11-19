@@ -16,7 +16,7 @@ const swaggerDefinition = {
         version: '1.0',
         description: 'Descricao'
     },
-    host: 'https://appstockapi.herokuapp.com',
+    host: 'appstockapi.herokuapp.com',
     basePath: '/'    
 };
 

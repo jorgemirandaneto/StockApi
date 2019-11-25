@@ -27,6 +27,7 @@ db.Sequelize = Sequelize;
 
 db.item = require('../models/item')(sequelize, Sequelize);
 db.mesuare = require('../models/mesuare')(sequelize,Sequelize);
+db.user = require('../models/user')(sequelize, Sequelize);
 
 db.item.belongsTo(db.mesuare);
 db.mesuare.hasMany(db.item);

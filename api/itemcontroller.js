@@ -14,7 +14,7 @@ exports.create = (req, res) => {
 	)
 }
 
-exports.findAll = (req, res) => {
+exports.findAll =  (req, res) => {
 	item.findAll({
 		include: [{
 			model: db.mesuare

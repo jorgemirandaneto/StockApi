@@ -4,11 +4,15 @@ const express = require('express');
 const server = express();
 const allowcors = require('./cors');
 const swaggerUi = require('swagger-ui-express');
-const swaggerJSDoc =require('swagger-jsdoc')
+const swaggerJSDoc =require('swagger-jsdoc');
+require("dotenv-safe").config();
+var jwt = require('jsonwebtoken');
+
 
 server.use(bodyParse.urlencoded({extended : true}));
 server.use(bodyParse.json());
 server.use(allowcors);
+
 
 const swaggerDefinition = {
     info: {
@@ -32,8 +36,7 @@ server.get('/swagger.json', function(req,res){
     req.send(swaggerSpec);
 });
 
-
-server.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+server.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 server.listen(port, function(){
     console.log(`Aplicacao rodando na porta ${port}`)
